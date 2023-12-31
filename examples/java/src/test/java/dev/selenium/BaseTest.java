@@ -46,7 +46,11 @@ public class BaseTest {
 
   protected ChromeDriver startChromeDriver(ChromeOptions options) {
     driver = new ChromeDriver(options);
-    return (ChromeDriver) driver;
+    ChromeDriver cdriver = null;
+    if (driver instanceof ChromeDriver) {
+      cdriver = (ChromeDriver)driver;
+    }
+    return  cdriver;
   }
 
   protected File getTempDirectory(String prefix) {
@@ -88,7 +92,7 @@ public class BaseTest {
             "--log-level",
             "WARNING"
           });
-      return new URL("http://localhost:" + port);
+      return new URL("http://C02FM43ZMD6R:" + port);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }

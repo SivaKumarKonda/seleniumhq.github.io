@@ -18,9 +18,10 @@ public class UsingSeleniumTest {
         driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
         String title = driver.getTitle();
-        assertEquals("Web form", title);
+        assertEquals("Web form", title, "wen form test passed");
 
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        //driver.manage().timeouts().
 
         WebElement textBox = driver.findElement(By.name("my-text"));
         WebElement submitButton = driver.findElement(By.cssSelector("button"));

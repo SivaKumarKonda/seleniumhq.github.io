@@ -19,13 +19,16 @@ public class ActionsTest extends BaseChromeTest {
         long start = System.currentTimeMillis();
 
         WebElement clickable = driver.findElement(By.id("clickable"));
-        new Actions(driver)
-                .moveToElement(clickable)
-                .pause(Duration.ofSeconds(1))
-                .clickAndHold()
-                .pause(Duration.ofSeconds(1))
-                .sendKeys("abc")
-                .perform();
+        Actions a = new Actions(driver);
+                a.moveToElement(clickable).pause(Duration.ofSeconds(1));
+                a.pause(Duration.ofSeconds(1)).pause(Duration.ofSeconds(1));
+                a.clickAndHold().pause(Duration.ofSeconds(1));
+                a.pause(Duration.ofSeconds(1)).pause(Duration.ofSeconds(1));
+                a.sendKeys("abc").pause(Duration.ofSeconds(1));
+                a.perform();
+                a.sendKeys(clickable,"siva konda").pause(Duration.ofSeconds(1));
+                a.moveToElement(clickable).pause(Duration.ofSeconds(1));
+
 
         long duration = System.currentTimeMillis() - start;
         Assertions.assertTrue(duration > 2000);

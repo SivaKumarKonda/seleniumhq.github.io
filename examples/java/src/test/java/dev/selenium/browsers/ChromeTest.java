@@ -24,9 +24,10 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.manager.SeleniumManagerOutput;
 import org.openqa.selenium.remote.service.DriverFinder;
+import org.testng.annotations.AfterTest;
 
 public class ChromeTest extends BaseTest {
-  @AfterEach
+  @AfterTest
   public void clearProperties() {
     System.clearProperty(ChromeDriverService.CHROME_DRIVER_LOG_PROPERTY);
     System.clearProperty(ChromeDriverService.CHROME_DRIVER_LOG_LEVEL_PROPERTY);
@@ -41,9 +42,7 @@ public class ChromeTest extends BaseTest {
   @Test
   public void arguments() {
     ChromeOptions options = new ChromeOptions();
-
-    options.addArguments("--start-maximized");
-
+    options.addArguments("--start-maximized","--headless=new");
     driver = new ChromeDriver(options);
   }
 
