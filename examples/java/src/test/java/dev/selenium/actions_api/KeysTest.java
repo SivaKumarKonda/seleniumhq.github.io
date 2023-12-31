@@ -9,78 +9,93 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class KeysTest extends BaseChromeTest {
+public class KeysTest extends BaseChromeTest
+{
     @Test
-    public void keyDown() {
+    public void keyDown ()
+    {
         driver.get("https://www.selenium.dev/selenium/web/single_text_input.html");
 
         new Actions(driver)
-                .keyDown(Keys.SHIFT)
-                .sendKeys("a")
-                .perform();
+            .keyDown(Keys.SHIFT)
+            .sendKeys("a")
+            .perform();
 
         WebElement textField = driver.findElement(By.id("textInput"));
         Assertions.assertEquals("A", textField.getAttribute("value"));
     }
 
     @Test
-    public void keyUp() {
+    public void keyUp ()
+    {
         driver.get("https://www.selenium.dev/selenium/web/single_text_input.html");
 
         new Actions(driver)
-                .keyDown(Keys.SHIFT)
-                .sendKeys("a")
-                .keyUp(Keys.SHIFT)
-                .sendKeys("b")
-                .perform();
+            .keyDown(Keys.SHIFT)
+            .sendKeys("a")
+            .keyUp(Keys.SHIFT)
+            .sendKeys("b")
+            .perform();
 
         WebElement textField = driver.findElement(By.id("textInput"));
         Assertions.assertEquals("Ab", textField.getAttribute("value"));
     }
 
     @Test
-    public void sendKeysToActiveElement() {
+    public void sendKeysToActiveElement ()
+    {
         driver.get("https://www.selenium.dev/selenium/web/single_text_input.html");
 
         new Actions(driver)
-                .sendKeys("abc")
-                .perform();
+            .sendKeys("abc")
+            .perform();
 
         WebElement textField = driver.findElement(By.id("textInput"));
         Assertions.assertEquals("abc", textField.getAttribute("value"));
     }
 
     @Test
-    public void sendKeysToDesignatedElement() {
+    public void sendKeysToDesignatedElement ()
+    {
         driver.get("https://www.selenium.dev/selenium/web/single_text_input.html");
         driver.findElement(By.tagName("body")).click();
 
         WebElement textField = driver.findElement(By.id("textInput"));
         new Actions(driver)
-                .sendKeys(textField, "Selenium!")
-                .perform();
+            .sendKeys(textField, "Selenium!")
+            .perform();
 
         Assertions.assertEquals("Selenium!", textField.getAttribute("value"));
     }
 
     @Test
-    public void copyAndPaste() {
+    public void copyAndPaste ()
+    {
         driver.get("https://www.selenium.dev/selenium/web/single_text_input.html");
 
-        Keys cmdCtrl = Platform.getCurrent().is(Platform.MAC) ? Keys.COMMAND : Keys.CONTROL;
+        Keys cmdCtrl = Platform.getCurrent().is(Platform.MAC) ?
+            Keys.COMMAND :
+            Keys.CONTROL;
 
         WebElement textField = driver.findElement(By.id("textInput"));
-        new Actions(driver)
-                .sendKeys(textField, "Selenium!")
-                .sendKeys(Keys.ARROW_LEFT)
-                .keyDown(Keys.SHIFT)
-                .sendKeys(Keys.ARROW_UP)
-                .keyUp(Keys.SHIFT)
-                .keyDown(cmdCtrl)
-                .sendKeys("xvv")
-                .keyUp(cmdCtrl)
-                .perform();
+        Actions a = new Actions(driver);
+
+        a.sendKeys(textField, "Selenium!")
+            .sendKeys(Keys.ARROW_LEFT)
+            .keyDown(Keys.SHIFT)
+            .sendKeys(Keys.ARROW_UP)
+            .keyUp(Keys.SHIFT)
+            .keyDown(cmdCtrl)
+            .sendKeys("xvv")
+            .keyUp(cmdCtrl)
+            .perform();
 
         Assertions.assertEquals("SeleniumSelenium!", textField.getAttribute("value"));
+
+        textField.clear();
+        a.sendKeys(textField,
+            "s ").keyDown(cmdCtrl).sendKeys("ax").keyDown(cmdCtrl).sendKeys("vvv").perform();
+
+        Assertions.assertEquals("s s s ", textField.getAttribute("value"));
     }
 }

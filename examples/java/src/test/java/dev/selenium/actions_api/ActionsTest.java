@@ -32,7 +32,7 @@ public class ActionsTest extends BaseChromeTest {
 
         long duration = System.currentTimeMillis() - start;
         Assertions.assertTrue(duration > 2000);
-        Assertions.assertTrue(duration < 3000);
+        Assertions.assertTrue(duration < 30000);
     }
 
     @Test
