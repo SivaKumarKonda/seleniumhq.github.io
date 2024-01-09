@@ -93,7 +93,8 @@ public class KeysTest extends BaseChromeTest
         Assertions.assertEquals("SeleniumSelenium!", textField.getAttribute("value"));
 
         textField.clear();
-        a.sendKeys(textField,
+        a.sendKeys(
+            textField,
             "s ").keyDown(cmdCtrl).sendKeys("ax").keyDown(cmdCtrl).sendKeys("vvv").perform();
 
         Assertions.assertEquals("s s s ", textField.getAttribute("value"));
