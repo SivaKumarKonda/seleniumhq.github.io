@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InteractionTest {
@@ -13,7 +15,7 @@ public class InteractionTest {
     @Test
     public void interactWithElements() {
         WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
         // Navigate to Url
         driver.get("https://www.selenium.dev/selenium/web/inputs.html");
 

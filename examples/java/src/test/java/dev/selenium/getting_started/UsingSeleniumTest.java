@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,7 +21,7 @@ public class UsingSeleniumTest {
         String title = driver.getTitle();
         assertEquals("Web form", title, "wen form test passed");
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+        driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
         //driver.manage().timeouts().
 
         WebElement textBox = driver.findElement(By.name("my-text"));

@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 public class WaitsTest extends BaseTest
@@ -64,8 +65,8 @@ public class WaitsTest extends BaseTest
 
         WebElement added = driver.findElement(By.id("box0"));
 
-        Assertions.assertEquals("redbox", added.getDomAttribute("class"));
-        Assertions.assertEquals("box0", added.getDomAttribute("id"));
+        Assertions.assertEquals("redbox", added.getAttribute("class"));
+        Assertions.assertEquals("box0", added.getAttribute("id"));
     }
 
     @Test
@@ -73,14 +74,14 @@ public class WaitsTest extends BaseTest
     {
         startChromeDriver(new ChromeOptions());
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(5,TimeUnit.SECONDS);
         driver.get("https://www.selenium.dev/selenium/web/dynamic.html");
         driver.findElement(By.id("adder")).click();
 
         WebElement added = driver.findElement(By.id("box0"));
 
-        Assertions.assertEquals("redbox", added.getDomAttribute("class"));
+        Assertions.assertEquals("redbox", added.getAttribute("class"));
     }
 
     @Test
@@ -94,10 +95,10 @@ public class WaitsTest extends BaseTest
 
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         final Boolean until = wait.until(driver -> revealed.isDisplayed());
-        final String until1 = wait.until(d -> revealed.getDomProperty("value"));
+        final String until1 = wait.until(d -> revealed.getAttribute("value"));
 
         revealed.sendKeys("Displayed");
-        Assertions.assertEquals("Displayed", revealed.getDomProperty("value"));
+        Assertions.assertEquals("Displayed", revealed.getAttribute("value"));
     }
 
     @Test
@@ -123,6 +124,6 @@ public class WaitsTest extends BaseTest
                 return true;
             });
 
-        Assertions.assertEquals("Displayed", revealed.getDomProperty("value"));
+        Assertions.assertEquals("Displayed", revealed.getAttribute("value"));
     }
 }
