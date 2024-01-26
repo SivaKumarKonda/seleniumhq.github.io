@@ -1,11 +1,9 @@
 package dev.selenium.SeleniumSynchronizationStrategies.SSS_15_awaitility.end;
 
 
-import com.google.common.base.Function;
 import dev.selenium.SeleniumSynchronizationStrategies.SSS_15_awaitility.ThreadedFileCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.support.ui.FluentWait;
 
 import java.io.File;
 import java.io.IOException;

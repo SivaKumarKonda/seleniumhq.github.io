@@ -1,0 +1,7 @@
+mvn clean install -D skipTests
+
+ cmd --% /c del /S ._*
+
+ #hidden files with the pattren
+ del /s /a:H ._*.*
+

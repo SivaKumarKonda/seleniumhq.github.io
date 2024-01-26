@@ -2,6 +2,7 @@ package dev.selenium.bidirectional.chrome_devtools;
 
 import com.google.common.collect.ImmutableMap;
 import dev.selenium.BaseTest;
+
 import java.time.Duration;
 import java.util.Base64;
 import java.util.HashMap;
