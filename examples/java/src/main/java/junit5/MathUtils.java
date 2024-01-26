@@ -9,4 +9,8 @@ public class MathUtils {
     public double area(double radius) {
         return Math.PI * radius * radius;
     }
+
+    public double divide(int a){
+        return 5/a;
+    }
 }

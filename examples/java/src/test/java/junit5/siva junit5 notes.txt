@@ -1,0 +1,6 @@
+run sigle java file  , below "MathUtilsTest" is class files
+ mvn test -Dtest=MathUtilsTest
+
+ run all tests in a module
+  mvn test -Dtest="junit5.**"
+

@@ -32,4 +32,16 @@ class MathUtilsTest {
         double area = mu.area(5);
         Assertions.assertEquals(78.53981633974483, area, "expected area is not equal to actual");
     }
+
+    @Test
+    void testDivide() {
+
+        Assertions.assertEquals(5, mu.divide(1));
+    }
+
+    @Test
+    void testDivideException() {
+
+        Assertions.assertThrows(ArithmeticException.class, () -> mu.divide(0), "execption throwed");
+    }
 }

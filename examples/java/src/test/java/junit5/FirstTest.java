@@ -20,9 +20,9 @@ class FirstTest {
     @DisplayName("siva test addition")
     @ParameterizedTest(name = "For example, year {0} is not supported.")
     @ValueSource(ints = { -1, -4 })
-     void testAddition( int a , int b) {
+     int testAddition( int a , int b) {
 
-
+return 0 ;
     }
 
 
