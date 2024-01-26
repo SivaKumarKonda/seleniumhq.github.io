@@ -1,25 +1,35 @@
 package junit5;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class MathUtilsTest {
 
+    MathUtils mu = null;
+
     @BeforeEach
     void setUp() {
-        System.out.println("before test");
+
+        mu = new MathUtils();
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("after test");
+        mu = null;
     }
 
     @Test
+    @DisplayName("adding 2 numbers")
     void add() {
-        System.out.println("in test");
+
+        int add = mu.add(1, 2);
+        Assertions.assertEquals(3, add);
+    }
+
+    @Test
+    @DisplayName("area of a circle with radius")
+    void area() {
+        double area = mu.area(5);
+        Assertions.assertEquals(78.53981633974483, area, "expected area is not equal to actual");
     }
 }
