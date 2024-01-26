@@ -1,6 +1,27 @@
 run sigle java file  , below "MathUtilsTest" is class files
- mvn test -Dtest=MathUtilsTest
+mvn test -Dtest=MathUtilsTest
 
  run all tests in a module
-  mvn test -Dtest="junit5.**"
+ mvn test -Dtest="junit5.**"
+
+ @BeforeAll should be static because it dosent need instance
+ but if you set @testinstance life cycle to class level then you dont need static
+
+ each test method creates seperate instance with before each and after each
+
+ @Displayname to show the display name isted of method name
+
+ @Disabled - when you wnat to skip , or use this in test driven development
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
+ @Test
+ @BeforeTest
+ @AfterTest
+
+
+
+
+
+
 
