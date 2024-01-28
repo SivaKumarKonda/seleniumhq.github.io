@@ -1,6 +1,7 @@
 package junit5;
 
 
+import junit5.example.sivajunit5.MathUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 
@@ -14,17 +15,24 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestReporter;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MathUtilsTest {
 
     MathUtils mu = null;
+    TestInfo tinfo;
+    TestReporter treport;
 
     @BeforeEach
-    void setUp() {
-
+    void setUp(TestInfo tinfo, TestReporter treport) {
+        this.tinfo =tinfo;
+        this.treport=treport;
         mu = new MathUtils();
     }
 
@@ -35,11 +43,14 @@ class MathUtilsTest {
 
      @Nested
     @DisplayName("testing add func")
+     @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
     class AddTesing{
         @Test
         @DisplayName("test positve")
         void testAddingPositiveNumbers(){
-            assertEquals(4,mu.add(2,2),"adding positve numbers not working");
+            int expec =4;
+            int actual = mu.add(2,2);
+            assertEquals(expec,actual,()->"adding positve"+expec + "and"+actual +" numbers not working");
         }
         @Test
         @DisplayName("test negetive")
@@ -51,12 +62,13 @@ class MathUtilsTest {
     }
 
 
-    @Test
+    @RepeatedTest(12)
     @DisplayName("adding 2 numbers")
     void add() {
         Assumptions.assumeTrue(true);
         int add = mu.add(2, 2);
         assertEquals(4, add);
+        treport.publishEntry(tinfo.getDisplayName());
         assertAll(
                 ()->assertEquals(4,mu.add(2, 2)),
                 ()->assertEquals(-4,mu.add(-2, -2)
@@ -68,6 +80,15 @@ class MathUtilsTest {
     @Test
     @DisplayName("area of a circle with radius")
     void area() {
+        double area = mu.area(5);
+        assertEquals(78.53981633974483, area, "expected area is not equal to actual");
+    }   
+    
+    
+    @RepeatedTest(12)
+    @DisplayName("area of a circle with radius")
+    void areaRepition(RepetitionInfo info) {
+        int currentRepetition = info.getCurrentRepetition();
         double area = mu.area(5);
         assertEquals(78.53981633974483, area, "expected area is not equal to actual");
     }
