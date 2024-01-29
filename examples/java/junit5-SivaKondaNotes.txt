@@ -29,10 +29,21 @@ in idea set this java
  ./gradlew test  --tests "example.sivajunit5"
  ./gradlew :documentation:test
 
+ctrl +W
+shift f6
+alt rtarrow left arrow
+ctrl alt rta lftar
+ctrl n
+ctrl alt o i l
 
+display name for class and methods
+@DisplayName("Custom test name containing spaces")
 
+@Nested
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 
-
+@Nested
+@IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores.class)
 
  @BeforeAll should be static because it dosent need instance
  but if you set @testinstance life cycle to class level then you dont need static

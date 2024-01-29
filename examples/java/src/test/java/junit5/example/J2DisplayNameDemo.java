@@ -15,7 +15,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("A special test case")
-class DisplayNameDemo {
+class J2DisplayNameDemo {
 
 	@Test
 	@DisplayName("Custom test name containing spaces")

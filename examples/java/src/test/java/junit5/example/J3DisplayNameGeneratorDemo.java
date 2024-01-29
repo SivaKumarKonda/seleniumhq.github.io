@@ -14,17 +14,19 @@ package junit5.example;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.IndicativeSentencesGeneration;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class DisplayNameGeneratorDemo {
+class J3DisplayNameGeneratorDemo {
 
 	@Nested
-	@DisplayNameGeneration(ReplaceUnderscores.class)
+	@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 	class A_year_is_not_supported {
 
 		@Test
@@ -41,6 +43,7 @@ class DisplayNameGeneratorDemo {
 
 	@Nested
 	@IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores.class)
+	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 	class A_year_is_a_leap_year {
 
 		@Test

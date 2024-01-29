@@ -8,10 +8,8 @@
  * https://www.eclipse.org/legal/epl-v20.html
  */
 
-package junit5.example;
+package junit5.example.sivajunit5;
 
-// @formatter:off
-// tag::user_guide[]
 
 import junit5.example.domain.Person;
 import junit5.example.util.Calculator;
@@ -30,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class AssertionsDemo {
+class Siva3AssertionsDemo {
 
 	private final Calculator calculator = new Calculator();
 
@@ -50,8 +48,8 @@ class AssertionsDemo {
 		// In a grouped assertion all assertions are executed, and all
 		// failures will be reported together.
 		assertAll("person",
-			() -> assertEquals("Jane", person.getFirstName()),
-			() -> assertEquals("Doe", person.getLastName())
+				() -> assertEquals("Jane", person.getFirstName()),
+				() -> assertEquals("Doe", person.getLastName())
 		);
 	}
 
@@ -60,35 +58,35 @@ class AssertionsDemo {
 		// Within a code block, if an assertion fails the
 		// subsequent code in the same block will be skipped.
 		assertAll("properties",
-			() -> {
-				String firstName = person.getFirstName();
-				assertNotNull(firstName);
+				() -> {
+					String firstName = person.getFirstName();
+					assertNotNull(firstName);
 
-				// Executed only if the previous assertion is valid.
-				assertAll("first name",
-					() -> assertTrue(firstName.startsWith("J")),
-					() -> assertTrue(firstName.endsWith("e"))
-				);
-			},
-			() -> {
-				// Grouped assertion, so processed independently
-				// of results of first name assertions.
-				String lastName = person.getLastName();
-				assertNotNull(lastName);
+					// Executed only if the previous assertion is valid.
+					assertAll("first name",
+							() -> assertTrue(firstName.startsWith("J")),
+							() -> assertTrue(firstName.endsWith("e"))
+					);
+				},
+				() -> {
+					// Grouped assertion, so processed independently
+					// of results of first name assertions.
+					String lastName = person.getLastName();
+					assertNotNull(lastName);
 
-				// Executed only if the previous assertion is valid.
-				assertAll("last name",
-					() -> assertTrue(lastName.startsWith("D")),
-					() -> assertTrue(lastName.endsWith("e"))
-				);
-			}
+					// Executed only if the previous assertion is valid.
+					assertAll("last name",
+							() -> assertTrue(lastName.startsWith("D")),
+							() -> assertTrue(lastName.endsWith("e"))
+					);
+				}
 		);
 	}
 
 	@Test
 	void exceptionTesting() {
 		Exception exception = assertThrows(ArithmeticException.class, () ->
-			calculator.divide(1, 0));
+				calculator.divide(1, 0));
 		assertEquals("/ by zero", exception.getMessage());
 	}
 
@@ -121,7 +119,7 @@ class AssertionsDemo {
 	@Test
 	void timeoutNotExceededWithMethod() {
 		// The following assertion invokes a method reference and returns an object.
-		String actualGreeting = assertTimeout(ofMinutes(2), AssertionsDemo::greeting);
+		String actualGreeting = assertTimeout(ofMinutes(2), Siva3AssertionsDemo::greeting);
 		assertEquals("Hello, World!", actualGreeting);
 	}
 
