@@ -32,7 +32,7 @@ class Siva3AssertionsDemo {
 
 	private final Calculator calculator = new Calculator();
 
-	private final Person person = new Person("Jane", "Doe");
+	private final Person person = new Person();
 
 	@Test
 	void standardAssertions() {
@@ -44,12 +44,36 @@ class Siva3AssertionsDemo {
 	}
 
 	@Test
+	void testStandardAssertions() {
+		assertEquals(4, calculator.add(2, 2));
+		assertEquals(5, calculator.add(2, 3), "some thing wrong with addition");
+
+		int a = 2;
+		int b = 2;
+
+		assertEquals(4, calculator.add(a, b), () -> "adding " + a + "and " + b + "result " +
+				"should be 4");
+	}
+
+	@Test
 	void groupedAssertions() {
 		// In a grouped assertion all assertions are executed, and all
 		// failures will be reported together.
 		assertAll("person",
 				() -> assertEquals("Jane", person.getFirstName()),
 				() -> assertEquals("Doe", person.getLastName())
+		);
+	}
+
+	@Test
+	void testGroupedAssertions() {
+		// In a grouped assertion all assertions are executed, and all
+		// failures will be reported together.
+assertAll("testGroupedAssertions",
+		()->assertEquals(4,calculator.add(2,2)),
+		()->assertEquals("Jane",person.getFirstName()),
+		()-> assertEquals("Doe",person.getLastName())
+
 		);
 	}
 

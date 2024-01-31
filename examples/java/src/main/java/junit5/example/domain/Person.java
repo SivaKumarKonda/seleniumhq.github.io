@@ -23,14 +23,26 @@ public class Person {
 	private Gender gender;
 	private LocalDate dateOfBirth;
 
-	public Person(String firstName, String lastName) {
+	public Person(String firstName, String lastName, Gender gender) {
+		this(firstName, lastName);
+		this.gender = gender;
+	}
+
+	public Person(){
+		this.firstName ="dummyfirstName";
+	}
+
+	public Person(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public Person(String firstName, String lastName) {
+		this(firstName);
 		this.lastName = lastName;
 	}
 
 	public Person(String firstName, String lastName, Gender gender, LocalDate dateOfBirth) {
-		this(firstName, lastName);
-		this.gender = gender;
+		this(firstName, lastName, gender);
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -75,16 +87,14 @@ public class Person {
 			if (other.firstName != null) {
 				return false;
 			}
-		}
-		else if (!firstName.equals(other.firstName)) {
+		} else if (!firstName.equals(other.firstName)) {
 			return false;
 		}
 		if (lastName == null) {
 			if (other.lastName != null) {
 				return false;
 			}
-		}
-		else if (!lastName.equals(other.lastName)) {
+		} else if (!lastName.equals(other.lastName)) {
 			return false;
 		}
 		return true;
