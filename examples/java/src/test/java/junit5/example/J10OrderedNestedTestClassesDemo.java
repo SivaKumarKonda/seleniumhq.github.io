@@ -18,7 +18,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestClassOrder;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
-class OrderedNestedTestClassesDemo {
+//@TestClassOrder(ClassOrderer.DisplayName.class)
+//@TestClassOrder(ClassOrderer.ClassName.class)
+class J10OrderedNestedTestClassesDemo {
 
 	@Nested
 	@Order(1)

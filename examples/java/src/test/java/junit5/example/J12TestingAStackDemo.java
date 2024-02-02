@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("A stack")
-class TestingAStackDemo {
+class J12TestingAStackDemo {
 
 	Stack<Object> stack;
 

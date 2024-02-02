@@ -11,13 +11,19 @@
 package junit5.example;
 
 // tag::user_guide[]
+
+
+import org.junit.jupiter.api.MethodOrderer.MethodName;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.MethodOrderer.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 @TestMethodOrder(OrderAnnotation.class)
-class OrderedTestsDemo {
+//@TestMethodOrder(DisplayName.class)
+//@TestMethodOrder(MethodName.class)
+class J10OrderedTestsDemo {
 
 	@Test
 	@Order(1)

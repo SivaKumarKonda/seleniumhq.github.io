@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-class StandardTests {
+class J1StandardTests {
 
 	@BeforeAll
 	static void initAll() {
