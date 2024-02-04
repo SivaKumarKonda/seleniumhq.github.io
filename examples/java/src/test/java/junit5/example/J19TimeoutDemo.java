@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 @Tag("timeout")
 // tag::user_guide[]
-class TimeoutDemo {
+class J19TimeoutDemo {
 
 	@BeforeEach
 	@Timeout(5)

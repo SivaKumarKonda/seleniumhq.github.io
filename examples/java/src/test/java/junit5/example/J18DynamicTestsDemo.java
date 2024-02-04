@@ -41,7 +41,7 @@ import static org.junit.jupiter.api.Named.named;
 // end::user_guide[]
 // @formatter:off
 // tag::user_guide[]
-class DynamicTestsDemo {
+class J18DynamicTestsDemo {
 
 	private final Calculator calculator = new Calculator();
 

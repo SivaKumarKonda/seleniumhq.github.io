@@ -27,11 +27,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 // Use fully-qualified names to avoid having them show up in the imports.
 @org.junit.jupiter.api.parallel.Execution(org.junit.jupiter.api.parallel.ExecutionMode.SAME_THREAD)
 // tag::user_guide[]
-class RepeatedTestsDemo {
+class J15RepeatedTestsDemo {
 
 	private Logger logger = // ...
 		// end::user_guide[]
-		Logger.getLogger(RepeatedTestsDemo.class.getName());
+		Logger.getLogger(J15RepeatedTestsDemo.class.getName());
 	// tag::user_guide[]
 
 	@BeforeEach
