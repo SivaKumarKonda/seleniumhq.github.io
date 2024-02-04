@@ -20,9 +20,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.function.ThrowingConsumer;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
@@ -32,6 +35,7 @@ import java.util.stream.Stream;
 import static junit5.example.util.StringUtils.isPalindrome;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.DynamicContainer.dynamicContainer;
@@ -56,10 +60,24 @@ class J18DynamicTestsDemo {
 
 	@TestFactory
 	Collection<DynamicTest> dynamicTestsFromCollection() {
-		return Arrays.asList(
+		LinkedList<DynamicTest> sll = new LinkedList<>();
+		DynamicTest dt1 = dynamicTest("1st dynamic test", () -> assertTrue(isPalindrome("madam")));
+		DynamicTest dt2 = 	dynamicTest("2nd dynamic test", () -> assertEquals(4, calculator.multiply(2, 2)));
+		sll.add(dt1);
+		sll.add(dt2);
+
+		ArrayList<DynamicTest> sal = new ArrayList<>();
+		DynamicTest dt3 = DynamicTest.dynamicTest("siva dt with al ",null,() -> assertTrue(true));
+		DynamicTest dt4 = DynamicTest.dynamicTest("siva dt with al ", ()-> assertNotEquals(2,4));
+		sal.add(dt3);
+		sal.add(dt4);
+		sal.addAll(sll);
+
+		 Arrays.asList(
 			dynamicTest("1st dynamic test", () -> assertTrue(isPalindrome("madam"))),
 			dynamicTest("2nd dynamic test", () -> assertEquals(4, calculator.multiply(2, 2)))
 		);
+		return sll;
 	}
 
 	@TestFactory
@@ -86,11 +104,49 @@ class J18DynamicTestsDemo {
 		};
 	}
 
+
+	@TestFactory
+	DynamicTest[] sivaDynamicTestsFromArray() {
+		DynamicTest[] dt =  new DynamicTest[2];
+		dt[0] = dynamicTest("7th dynamic test", () -> assertTrue(isPalindrome("madam")));
+		dt[1] = dynamicTest("8th dynamic test", () -> assertEquals(4, calculator.multiply(2, 2)));
+
+		return dt;
+
+	}
+
 	@TestFactory
 	Stream<DynamicTest> dynamicTestsFromStream() {
 		return Stream.of("racecar", "radar", "mom", "dad")
 			.map(text -> dynamicTest(text, () -> assertTrue(isPalindrome(text))));
 	}
+
+
+	@TestFactory
+	Stream<DynamicTest> sivaDynamicTestsFromStream() {
+		Stream<DynamicTest> st;
+		st = Stream.of("racecar", "radar", "mom", "dad")
+					 .map(text -> dynamicTest(text, () -> assertTrue(isPalindrome(text))));
+
+	return st;
+	}
+
+
+	@TestFactory
+	Stream<DynamicTest> dynamicTestsFromStreamFactoryMethod() {
+		// Stream of palindromes to check
+		Stream<String> inputStream = Stream.of("racecar", "radar", "mom", "dad");
+
+		// Generates display names like: racecar is a
+		Function<String, String> displayNameGenerator = text -> text + " is a palindrome";
+
+		// Executes tests based on the current input value.
+		ThrowingConsumer<String> testExecutor = text -> assertTrue(isPalindrome(text));
+
+		// Returns a stream of dynamic tests.
+		return DynamicTest.stream(inputStream, displayNameGenerator, testExecutor);
+	}
+
 
 	@TestFactory
 	Stream<DynamicTest> dynamicTestsFromIntStream() {
@@ -135,21 +191,6 @@ class J18DynamicTestsDemo {
 
 		// Returns a stream of dynamic tests.
 		return DynamicTest.stream(inputGenerator, displayNameGenerator, testExecutor);
-	}
-
-	@TestFactory
-	Stream<DynamicTest> dynamicTestsFromStreamFactoryMethod() {
-		// Stream of palindromes to check
-		Stream<String> inputStream = Stream.of("racecar", "radar", "mom", "dad");
-
-		// Generates display names like: racecar is a palindrome
-		Function<String, String> displayNameGenerator = text -> text + " is a palindrome";
-
-		// Executes tests based on the current input value.
-		ThrowingConsumer<String> testExecutor = text -> assertTrue(isPalindrome(text));
-
-		// Returns a stream of dynamic tests.
-		return DynamicTest.stream(inputStream, displayNameGenerator, testExecutor);
 	}
 
 	@TestFactory
