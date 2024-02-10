@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.Duration;
 
-public class ActionsTest extends BaseChromeTest
+public class    ActionsTest extends BaseChromeTest
 {
     @Test
     public void pause ()

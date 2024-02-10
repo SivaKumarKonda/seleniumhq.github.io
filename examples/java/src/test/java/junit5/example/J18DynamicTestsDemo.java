@@ -77,6 +77,7 @@ class J18DynamicTestsDemo {
 			dynamicTest("1st dynamic test", () -> assertTrue(isPalindrome("madam"))),
 			dynamicTest("2nd dynamic test", () -> assertEquals(4, calculator.multiply(2, 2)))
 		);
+
 		return sll;
 	}
 
@@ -124,11 +125,11 @@ class J18DynamicTestsDemo {
 
 	@TestFactory
 	Stream<DynamicTest> sivaDynamicTestsFromStream() {
-		Stream<DynamicTest> st;
-		st = Stream.of("racecar", "radar", "mom", "dad")
-					 .map(text -> dynamicTest(text, () -> assertTrue(isPalindrome(text))));
+		Stream<String> st;
+		st = Stream.of("racecar", "radar", "mom", "dad");
+				Stream<DynamicTest> sdt =	st.map(text -> dynamicTest(text, () -> assertTrue(isPalindrome(text))));
 
-	return st;
+	return sdt;
 	}
 
 

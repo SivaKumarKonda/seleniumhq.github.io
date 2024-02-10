@@ -73,6 +73,19 @@ display name for class and methods
     }
 
 
+ Parameterized Tests:-
+
+@ParameterizedTest
+
+@ParameterizedTest
+ @ValueSource(strings = { "racecar", "radar", "able was I ere I saw elba" }) void palindromes(String candidate) { assertTrue(StringUtils.isPalindrome(candidate)); }
+
+Dynamic Tests:-
+
+@Test annotated tests are static in nature , means their behavior is decided at compile time and wont change at runtime , Assumptions provide a basic form of dynamic behavior but are intentionally rather limited in their expressiveness.
+This new kind of test is a dynamic test which is generated at runtime by a factory method that is annotated with @TestFactory.
+
+@TestFactory methods must not be private or static 
 
 
 

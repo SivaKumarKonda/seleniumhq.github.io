@@ -73,6 +73,7 @@ public class WaitsTest extends BaseTest
         startChromeDriver(new ChromeOptions());
 
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
         driver.manage().timeouts().pageLoadTimeout(5,TimeUnit.SECONDS);
         driver.get("https://www.selenium.dev/selenium/web/dynamic.html");
         driver.findElement(By.id("adder")).click();
