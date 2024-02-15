@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class J4AssertionsDemo {
+class J5AssertionsDemo {
 
 	private final Calculator calculator = new Calculator();
 
@@ -121,7 +121,7 @@ class J4AssertionsDemo {
 	@Test
 	void timeoutNotExceededWithMethod() {
 		// The following assertion invokes a method reference and returns an object.
-		String actualGreeting = assertTimeout(ofMinutes(2), J4AssertionsDemo::greeting);
+		String actualGreeting = assertTimeout(ofMinutes(2), J5AssertionsDemo::greeting);
 		assertEquals("Hello, World!", actualGreeting);
 	}
 

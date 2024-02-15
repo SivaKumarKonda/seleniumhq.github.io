@@ -23,7 +23,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class J3DisplayNameGeneratorDemo {
+class J4DisplayNameGeneratorDemo {
 
 	@Nested
 	@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)

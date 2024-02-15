@@ -22,9 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("TestInfo Demo")
-class TestInfoDemo {
+class J13TestInfoDemo {
 
-	TestInfoDemo(TestInfo testInfo) {
+	J13TestInfoDemo(TestInfo testInfo) {
 		assertEquals("TestInfo Demo", testInfo.getDisplayName());
 	}
 
