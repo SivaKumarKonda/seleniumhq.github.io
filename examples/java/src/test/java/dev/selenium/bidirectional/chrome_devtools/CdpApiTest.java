@@ -30,6 +30,7 @@ import org.openqa.selenium.devtools.v119.network.model.Headers;
 import org.openqa.selenium.devtools.v119.performance.Performance;
 import org.openqa.selenium.devtools.v119.performance.model.Metric;
 import org.openqa.selenium.devtools.v119.runtime.Runtime;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CdpApiTest extends BaseTest {
@@ -38,7 +39,7 @@ public class CdpApiTest extends BaseTest {
   @BeforeEach
   public void createSession() {
     ChromeOptions options = new ChromeOptions();
-    options.setBrowserVersion("118");
+    options.setBrowserVersion("121");
     driver = new ChromeDriver(options);
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }

@@ -83,6 +83,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
+
             <version>${org.seleniumhq.selenium}</version>
         </dependency>
 
@@ -91,12 +92,15 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
             <version>${org.seleniumhq.selenium}</version>
+
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-grid</artifactId>
+
             <version>${org.seleniumhq.selenium}</version>
+
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
         <dependency>
