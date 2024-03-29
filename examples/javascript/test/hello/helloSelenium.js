@@ -8,14 +8,3 @@ const {Builder} = require('selenium-webdriver');
   await driver.quit();
 })();
 
-
-
-function sivaHello(){
-let sdriver = new Builder().forBrowser(`chrome`).build();
-
-sdriver.get(`https://selenium.dev`);
-
-sdriver.quit();
-
-}
-sivaHello();

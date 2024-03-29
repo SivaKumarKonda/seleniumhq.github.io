@@ -10,8 +10,8 @@
 
     <properties>
         <surefire.parallel>1</surefire.parallel>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <junit.jupiter.version>5.10.1</junit.jupiter.version>
         <org.seleniumhq.selenium>4.17.0</org.seleniumhq.selenium>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,14 +60,16 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>selenium-jupiter</artifactId>
             <version>3.3.4</version>
-            <scope>test</scope>
+
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
         <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
-            <version>4.0.2</version>
+            <version>4.2.1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.imalittletester</groupId>
             <artifactId>thewaiter</artifactId>
@@ -111,24 +113,20 @@
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
+
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
             <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
+
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
@@ -136,7 +134,7 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>1.10.1</version>
-            <scope>test</scope>
+
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine -->
@@ -144,7 +142,7 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-engine</artifactId>
             <version>1.10.1</version>
-            <scope>test</scope>
+
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
@@ -152,7 +150,7 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-runner</artifactId>
             <version>1.10.1</version>
-            <scope>test</scope>
+
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-reporting -->
         <dependency>
@@ -167,7 +165,7 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-testkit</artifactId>
             <version>1.10.1</version>
-            <scope>test</scope>
+
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api -->
@@ -175,7 +173,7 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-api</artifactId>
             <version>1.10.1</version>
-            <scope>test</scope>
+
         </dependency>
 
 
@@ -184,7 +182,7 @@
             <groupId>com.google.jimfs</groupId>
             <artifactId>jimfs</artifactId>
             <version>1.1</version>
-            <scope>test</scope>
+
         </dependency>
 
 
@@ -200,7 +198,7 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
-            <scope>test</scope>
+
         </dependency>
 
 
@@ -210,20 +208,27 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.6.0</version>
-            <scope>test</scope>
+
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
-            <scope>test</scope>
+
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
             <version>5.10.1</version> <!-- can be omitted when using the BOM -->
-            <scope>test</scope>
+
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+
 
         <dependency>
             <groupId>com.titusfortner</groupId>
@@ -237,67 +242,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.2.5</version>
                 <configuration>
-                    <!-- ..You can filter tests by tags or tag expressions using the following configuration properties.
-
-to include tags or tag expressions, use groups.
-
-to exclude tags or tag expressions, use excludedGroups.. -->
-                    <groups>acceptance | !feature-a</groups>
-                    <excludedGroups>integration, regression</excludedGroups>
                     <properties>
                         <configurationParameters>
-                            <!--Configuration parameters to execute all tests in
-                            parallel-->
                             junit.jupiter.execution.parallel.enabled = true
                             junit.jupiter.execution.parallel.mode.default = concurrent
-                            <!--Configuration parameters to execute top-level classes
-                            sequentially but their methods in parallel
-                            -->
-                            junit.jupiter.execution.parallel.mode.classes.default = same_thread
-                            <!--The default execution mode is applied to all nodes of
-                            the test tree with a few notable exceptions, namely test
-                            classes that use the Lifecycle.PER_CLASS mode or a
-                            MethodOrderer (except for MethodOrderer.Random).
-                            In the former case, test authors have to ensure that the test
-                             class is thread-safe; in the latter, concurrent execution
-                             might conflict with the configured execution order. Thus,
-                             in both cases, test methods in such test classes ar-->
-
-
-                            junit.platform.reporting.open.xml.enabled = true
-                            junit.jupiter.conditions.deactivate = *
-                            junit.jupiter.extensions.autodetection.enabled = true
-                            junit.jupiter.testinstance.lifecycle.default = per_class
-                            junit.platform.reporting.output.dir = target/surefire-reports
-
-
-                            <!---To select a strategy, set the junit.jupiter.execution.
-                            parallel.config.strategy configuration parameter to one
-                            of the following options.
-
-                            dynamic
-                            Computes the desired parallelism based on the number of available processors/cores
-                            multiplied by the junit.jupiter.execution.parallel.config.dynamic.factor configuration
-                            parameter (defaults to 1). The optional junit.jupiter.execution.parallel.config.dynamic.
-                            max-pool-size-factor configuration parameter can be used to limit the maximum number of threads.
-
-                            fixed
-                            Uses the mandatory junit.jupiter.execution.parallel.config.fixed.parallelism
-                            configuration parameter as the desired parallelism. The optional junit.jupiter
-                            .execution.parallel.config.fixed.max-pool-size configuration parameter can be used to
-                            limit the maximum number of threads.-->
                             junit.jupiter.execution.parallel.config.strategy = fixed
                             junit.jupiter.execution.parallel.config.fixed.parallelism = ${surefire.parallel}
                             junit.jupiter.execution.parallel.config.fixed.max-pool-size = ${surefire.parallel}
                         </configurationParameters>
                     </properties>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.1.2</version>
             </plugin>
         </plugins>
     </build>
